@@ -31,7 +31,7 @@ installed() {
 while read packages; do
     if ! pacman -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
-        installed
+        yay -S - < install.txt
     fi
 done < install.txt
 
