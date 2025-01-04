@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /opt/
+cd ~/
 
 git clone https://aur.archlinux.org/yay.git
 
@@ -15,18 +15,26 @@ echo "Yay is installed"
 sleep 10
 
 
-
-installed() { 
-  yay -S - ~/auto/package_list.txt
+cd ~/auto/
+# Define the installation function first
+installed() {
+    read -p "Do you want to install missing packages? [y/N] " response
+    if [[ "$response" =~ ^[Yy] ]]; then
+        sudo pacman -S "$packages"
+    else
+        echo "Skipping installation"
+    fi
 }
 
-
+# Then use the while loop
 while read packages; do
-  if ! pacman -Q "$packages" >/dev/null 2>&1;then
-    echo "packages are not installed"
-    installed()
-  fi
+    if ! pacman -Q "$packages" >/dev/null 2>&1; then
+        echo "Package not installed: $packages"
+        installed
+    fi
 done < install.txt
+
+sleep 10
 
 pacman -S --needed git base-devel
 git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/auto/HyDE
@@ -34,7 +42,7 @@ cd ~/auto/HyDE/Scripts
 ./install.sh
 
 
-
+sleep 10
 
 
 read -p "Do you want to do GPU passthrough(y/N)"
