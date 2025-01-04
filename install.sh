@@ -15,7 +15,8 @@ echo "Yay is installed"
 sleep 10
 
 
-cd ~/auto/
+cd ~/arch_install
+
 # Define the installation function first
 installed() {
     read -p "Do you want to install missing packages? [y/N] " response
@@ -37,8 +38,8 @@ done < install.txt
 sleep 10
 
 pacman -S --needed git base-devel
-git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/auto/HyDE
-cd ~/auto/HyDE/Scripts
+git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
+cd ~/HyDE/Scripts
 ./install.sh
 
 
