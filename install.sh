@@ -37,7 +37,7 @@ installed_aur() {
 while read packages; do
     if ! pacman -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
-        sudo pacman -S - < main_install.txt
+        yay -S - < main_install.txt
     fi
 done < main_install.txt
 
