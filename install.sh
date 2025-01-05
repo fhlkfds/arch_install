@@ -33,15 +33,17 @@ installed_aur() {
 }
 
 
-# Then use the while loop
+# install main packages
 while read packages; do
     if ! pacman -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
         sudo pacman -S - < main_install.txt
     fi
 done < main_install.txt
+
+# Install aur packages
 while read packages; do
-    if ! pacman -Q "$packages" >/dev/null 2>&1; then
+    if ! yay -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
         yay -S - < aur_install.txt
     fi
