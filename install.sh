@@ -23,14 +23,30 @@ installed() {
         echo "Skipping installation"
     fi
 }
+installed_aur() {
+    read -p "Do you want to install missing packages? [y/N] " response
+    if [[ "$response" =~ ^[Yy] ]]; then
+        yay -S - "$packages"
+    else
+        echo "Skipping installation"
+    fi
+}
+
 
 # Then use the while loop
 while read packages; do
     if ! pacman -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
-        yay -S - < install.txt
+        sudo pacman -S - < main_install.txt
     fi
-done < install.txt
+done < main_install.txt
+while read packages; do
+    if ! pacman -Q "$packages" >/dev/null 2>&1; then
+        echo "Package not installed: $packages"
+        yay -S - < aur_install.txt
+    fi
+done < aur_install.txt
+
 
 
 pacman -S --needed git base-devel
