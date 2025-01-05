@@ -12,9 +12,6 @@ makepkg -si
 echo "Yay is installed"
 
 
-sleep 10
-
-
 cd ~/arch_install
 
 # Define the installation function first
@@ -35,7 +32,6 @@ while read packages; do
     fi
 done < install.txt
 
-sleep 10
 
 pacman -S --needed git base-devel
 git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
@@ -43,7 +39,6 @@ cd ~/HyDE/Scripts
 ./install.sh
 
 
-sleep 10
 
 
 read -p "Do you want to do GPU passthrough(y/N)"
