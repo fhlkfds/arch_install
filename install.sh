@@ -1,15 +1,15 @@
 #!/bin/bash
 
-cd ~/
+#cd ~/
 
-git clone https://aur.archlinux.org/yay.git
+#git clone https://aur.archlinux.org/yay.git
 
-cd yay
+#cd yay
 
-makepkg -si
+#makepkg -si
 
 
-echo "Yay is installed"
+#echo "Yay is installed"
 
 
 cd ~/arch_install
