@@ -1348,14 +1348,11 @@ zram-generator
 zsh
 zstd
 ani-cli
-anki
 anki-bin
-anki
 asus-ux32-fancontrol
 cava
 cava
-coolercontrol
-coolercontrol
+coolercontrol-bin
 coolercontrol-liqctld
 coolercontrold
 coolercontrold

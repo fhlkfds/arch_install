@@ -37,9 +37,14 @@ installed_aur() {
 while read packages; do
     if ! pacman -Q "$packages" >/dev/null 2>&1; then
         echo "Package not installed: $packages"
-        yay -S - < main_install.txt
+        missing_packages="$missing_packages $packages"
     fi
 done < main_install.txt
+
+if [ -n "$missing_packages" ]; then
+    yay -S --needed $missing_packages
+fi
+
 
 # Install aur packages
 while read packages; do
