@@ -8,8 +8,6 @@ cava
 coolercontrol
 coolercontrol
 coolercontrol-liqctld
-coolercontrold
-coolercontrold
 dmg2img
 dmg2img
 fancontrol-gui
