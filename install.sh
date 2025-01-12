@@ -17,7 +17,7 @@ cd ~/arch_install
 
 pacman -S fail2ban ufw screenfetch amd-ucode hugo neovim ansible hugo 
 
-yay -S librewolf-bin spotify ruskdesk-bin anki-bin freetube-bin managa-bin bat bat-extra eza ani-cli ytfzf 
+yay -S librewolf-bin spotify ruskdesk-bin anki-bin freetube-bin managa-bin bat bat-extra eza ani-cli ytfzf  obsidian dobe-source-code-pro-fonts cantarell-fonts fontconfig freetype2 gnu-free-fonts lib32-fontconfig lib32-freetype2 libfontenc libxfont2 libxft noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation woff2 xorg-fonts-encodings
 
 
 pacman -S --needed git base-devel
