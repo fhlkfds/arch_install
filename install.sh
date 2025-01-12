@@ -19,25 +19,6 @@ pacman -S fail2ban ufw screenfetch amd-ucode hugo neovim ansible hugo
 
 yay -S librewolf-bin spotify ruskdesk-bin anki-bin freetube-bin managa-bin bat bat-extra eza ani-cli ytfzf  obsidian dobe-source-code-pro-fonts cantarell-fonts fontconfig freetype2 gnu-free-fonts lib32-fontconfig lib32-freetype2 libfontenc libxfont2 libxft noto-fonts-emoji ttf-jetbrains-mono-nerd ttf-liberation woff2 xorg-fonts-encodings
 
-
-pacman -S --needed git base-devel
-git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
-cd ~/HyDE/Scripts
-./install.sh
-
-
-
-
-read -p "Do you want to do GPU passthrough(y/N)"
-
-if [[ "$response" =~ ^[Yy] ]]; then
-  git clone https://github.com/HikariKnight/quickpassthrough.git
-  pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq
-  yay -S looking-glass
-else
-  exit 0
-if
-
 # Ask the user if they want to set up fail2ban, change SSH port, and configure UFW for SSH security
 read -p "Do you want to secure SSH by setting up fail2ban, changing SSH port, and using SSH keys? (yes/no) " response
 
@@ -106,4 +87,21 @@ if [[ "$response" == "yes" ]]; then
 else
     echo "SSH security setup cancelled."
 fi
+read -p "Do you want to do GPU passthrough(y/N)"
+
+if [[ "$response" =~ ^[Yy] ]]; then
+  git clone https://github.com/HikariKnight/quickpassthrough.git
+  pacman -S qemu libvirt edk2-ovmf virt-manager ebtables dnsmasq
+  yay -S looking-glass
+else
+  exit 0
+if
+
+
+pacman -S --needed git base-devel
+git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
+cd ~/HyDE/Scripts
+./install.sh
+
+
 
