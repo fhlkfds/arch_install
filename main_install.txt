@@ -69,7 +69,6 @@ cabextract
 cairo
 cairomm
 cairomm-1.16
-calibre
 cantarell-fonts
 capstone
 cdparanoia
@@ -112,15 +111,12 @@ device-mapper
 dhcpcd
 dht
 diffutils
-discord
 distro-info
 distro-info-data
 dkms
 dmidecode
 dnsmasq
 dnssec-anchors
-docker
-docker-compose
 dolphin
 dosfstools
 double-conversion
