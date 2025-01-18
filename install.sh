@@ -103,28 +103,25 @@ fi
 
 
 pacman -S --needed git base-devel
+
+# Clone the repository
 git clone --depth 1 https://github.com/prasanthrangan/hyprdots ~/HyDE
-cd ~/HyDE/Scripts
-./install.sh &&
 
-echo "alias man='batman'" >> ~/.zshrc
+# Modify dotfiles before running the install script
+echo "alias man='batman'" >> /home/liam/HyDE/Scripts/.zshrc
+echo "alias sudo='doas'" >> /home/liam/HyDE/Scripts/.zshrc
+echo "alias manga='manga-tui'" >> /home/liam/HyDE/Scripts/.zshrc
+echo "alias ani='ani-cli'" >> /home/liam/HyDE/Scripts/.zshrc
+echo "alias cat='bat'" >> /home/liam/HyDE/Scripts/.zshrc
 
-echo "alias sudo='doas'" >> ~/.zshrc
+# Modify monitor configuration in Hypr
+echo "monitor=DP-1,1680x1050@58.03,656x50,1.0" >> /home/liam/HyDE/Scripts/.config/hypr/monitors.conf
+echo "monitor=DP-1,transform,1" >> /home/liam/HyDE/Scripts/.config/hypr/monitors.conf
+echo "monitor=HDMI-A-1,2560x1080@75.0,1706x233,1.0" >> /home/liam/HyDE/Scripts/.config/hypr/monitors.conf
 
-echo "alias manga='manga-tui'" >> ~/.zshrc
+# Modify hyprland.conf using sed
+config_file="/home/liam/HyDE/Scripts/.config/hypr/hyprland.conf"
 
-echo "alias ani='ani-cli'" >> ~/.zshrc
-
-echo "alias cat='bat'" >> ~/.zshrc
-
-
-echo "monitor=DP-1,1680x1050@58.03,656x50,1.0" >> ~/.config/hypr/monitors.conf
-echo "monitor=DP-1,transform,1" >> ~/.config/hypr/monitors.conf
-echo "monitor=HDMI-A-1,2560x1080@75.0,1706x233,1.0" >> ~/.config/hypr/monitors.conf
-
-
-
-# Apply changes using sed
 sed -i '
 15c\
 $browser = librewolf\n$note = obsidian\n$music = spotify
@@ -158,9 +155,8 @@ bind = $mainMod+Shift, S, togglespecialworkspace,
 
 echo "Changes applied successfully. A backup of the original file has been saved as $config_file.bak"
 
-
 # Path to the workspaces configuration file
-workspace_config="$HOME/.config/hypr/workspaces.conf"
+workspace_config="/home/liam/HyDE/Scripts/.config/hypr/workspaces.conf"
 
 # Backup the original file
 cp "$workspace_config" "$workspace_config.bak"
@@ -177,9 +173,8 @@ EOF
 
 echo "Lines appended successfully. A backup of the original file has been saved as $workspace_config.bak"
 
-
 # Path to the hyprland configuration file
-hyprland_config="$HOME/.config/hypr/hyprland.conf"
+hyprland_config="/home/liam/HyDE/Scripts/.config/hypr/hyprland.conf"
 
 # Backup the original file
 cp "$hyprland_config" "$hyprland_config.bak"
@@ -190,10 +185,11 @@ sed -i '
 exec-once = ~/.local/bin/start-lg.sh\nexec-once = [workspace 6 silent] spotify\nexec-once = [workspace 2 silent] librewolf\nexec-once = [workspace 1 silent] kitty\nexec-once = [workspace 3 silent] obsidian\nexec-once = [workspace 7 silent] virt-manager\nexec-once = [workspace 8 silent] btop
 125a\
 plugin {\n    split-monitor-workspaces {\n        count = 5\n        keep_focused = 0\n        enable_notifications = 0\n        enable_persistent_workspaces = 1\n    }\n}
-140c\
-source = ~/.config/hypr/workspaces.conf
-141a\
-source = ~/.config/hypr/nvidia.conf # auto sourced vars for nvidia
 ' "$hyprland_config"
 
 echo "Changes applied successfully. A backup of the original file has been saved as $hyprland_config.bak"
+
+# Now run the install script
+cd ~/HyDE/Scripts
+./install.sh
+
